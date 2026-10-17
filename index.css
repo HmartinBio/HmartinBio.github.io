@@ -135,7 +135,7 @@ a:focus-visible { outline: 3px solid var(--brand-coral); outline-offset: 4px; bo
   line-height: 1.12;
 }
 #work { margin: 0; padding: 0; }
-#forks, #blog_section { margin: 42px 0 0; padding: 0; }
+#forks, #blog_section, #publications { margin: 42px 0 0; padding: 0; }
 .projects {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
