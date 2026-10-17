@@ -1,0 +1,259 @@
+/* Helmholtz Munich bioinformatics portfolio — responsive sidebar revision. */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Questrial&display=swap');
+
+:root {
+  --sidebar-width: clamp(345px, 31vw, 475px);
+  --bg-color: #f7f9fd;
+  --text-color: #131b32;
+  --text-muted: #5b667c;
+  --border: #e7ebf3;
+  --brand-coral: #fc567f;
+  --brand-blue: #1989ee;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-color);
+  background: var(--bg-color);
+  font-family: 'DM Sans', 'Poppins', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+a:focus-visible { outline: 3px solid var(--brand-coral); outline-offset: 4px; border-radius: 3px; }
+[hidden] { display: none !important; }
+
+/* A portrait DNA crop is only a background. The brand wordmark is its own image,
+   so it NEVER disappears behind background-size: cover. */
+#profile {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--sidebar-width);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: clamp(30px, 3.15vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+  overflow-y: auto;
+  color: #fff;
+  background-color: #080f2b;
+  background-image:
+    linear-gradient(95deg, rgba(5, 9, 29, .86) 0%, rgba(5, 10, 33, .72) 57%, rgba(8, 10, 36, .40) 100%),
+    linear-gradient(0deg, rgba(3, 8, 30, .77), transparent 59%),
+    url('./images/dna-sidebar.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.24) transparent;
+  isolation: isolate;
+}
+#brand_logo {
+  display: block;
+  width: 100%;
+  max-width: 365px;
+  height: auto;
+  object-fit: contain;
+  object-position: left top;
+  flex-shrink: 0;
+  margin: 0 0 clamp(22px, 4vh, 42px);
+  filter: drop-shadow(0 2px 18px rgba(0,0,0,.16));
+}
+#profile_img {
+  flex-shrink: 0;
+  width: clamp(104px, 10vw, 138px);
+  height: clamp(104px, 10vw, 138px);
+  border: 3px solid rgba(255,255,255,.9);
+  border-radius: 50%;
+  box-shadow: 0 8px 30px rgba(0,0,0,.34);
+  background-color: #132449;
+  background-size: cover !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  margin: 0 0 19px;
+}
+#username { margin-bottom: 12px; font-size: 15px; font-weight: 600; }
+#username span {
+  display: block;
+  font-size: clamp(23px, 2vw, 29px);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -.045em;
+  margin-bottom: 6px;
+}
+#username a, #about a { color: #fff; text-decoration: none; }
+#username a { font-weight: 500; color: rgba(241,246,255,.83); }
+#username a:hover, #about a:hover { text-decoration: underline; }
+#userbio {
+  font-size: clamp(16px, 1.35vw, 19px);
+  font-weight: 600;
+  margin-bottom: 21px;
+  line-height: 1.35;
+}
+#about { font-size: 15px; font-weight: 500; line-height: 1.65; }
+#about > span { display: block; margin: 7px 0; color: rgba(255,255,255,.90); }
+#about > span i { width: 21px; color: #d8e8ff; font-size: 15px; }
+#profile .socials {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 21px;
+}
+#profile .socials > span { display: inline-block; margin: 0; }
+#profile .socials a {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255,255,255,.22);
+  border-radius: 50%;
+  background: rgba(255,255,255,.11);
+  color: #fff;
+  font-size: 17px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+}
+#profile .socials a:hover { background: rgba(255,255,255,.25); transform: translateY(-2px); }
+
+/* Bright, relaxed reading area for GitHub projects. */
+#display {
+  width: calc(100% - var(--sidebar-width));
+  margin-left: var(--sidebar-width);
+  padding: clamp(42px, 5vw, 76px) clamp(30px, 4.1vw, 75px) 28px;
+  min-height: 100vh;
+}
+#display h1 {
+  font-family: 'Questrial', 'DM Sans', sans-serif;
+  font-size: clamp(34px, 3.4vw, 49px);
+  letter-spacing: -.045em;
+  font-weight: 800;
+  margin: 0 0 28px;
+  line-height: 1.12;
+}
+#work { margin: 0; padding: 0; }
+#forks, #blog_section { margin: 42px 0 0; padding: 0; }
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 19px;
+  align-items: stretch;
+}
+.projects a {
+  display: flex;
+  min-width: 0;
+  width: 100%;
+  text-decoration: none;
+}
+.projects section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0;
+  min-height: 178px;
+  margin: 0;
+  padding: 22px;
+  color: var(--text-color);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(18,39,71,.035);
+  transition: border-color .2s, transform .2s, box-shadow .2s;
+}
+.projects a:hover section {
+  transform: translateY(-3px);
+  border-color: #d0dcf0;
+  box-shadow: 0 14px 30px rgba(17,34,62,.10);
+}
+.section_title {
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.32;
+  letter-spacing: -.023em;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+.about_section {
+  margin: 12px 0 0;
+  color: var(--text-muted);
+  line-height: 1.5;
+  font-size: 15px;
+}
+.about_section:empty { display: none; }
+.bottom_section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 26px;
+  color: #647088;
+  font-size: 13px;
+}
+.bottom_section span { display: inline-block; margin: 0; white-space: nowrap; }
+.bottom_section span:first-child { margin-right: auto; font-weight: 700; color: #365473; }
+.bottom_section i { color: #79889f; font-size: 14px; }
+#footer { text-align: center; padding: 68px 0 20px; }
+#footer a { color: #8490a1; font-size: 12px; text-decoration: none; }
+#footer a:hover { text-decoration: underline; }
+#blogs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 19px; }
+#blogs > a { text-decoration: none; }
+#blogs section { background:#fff; border:1px solid var(--border); border-radius:14px; overflow:hidden; }
+#blogs section img { display:block; width:100%; object-fit:cover; }
+.blog_container { padding: 22px; }
+
+/* Tablet: bring the profile above the work area, not a cropped 60vh box. */
+@media (max-width: 1050px) {
+  :root { --sidebar-width: 320px; }
+  #profile { padding: 28px 26px; }
+  #brand_logo { margin-bottom: 34px; }
+  #display { padding: 44px 28px; }
+  .projects { grid-template-columns: 1fr; }
+  .projects section { min-height: 154px; }
+}
+@media (max-width: 760px) {
+  #profile {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    padding: 29px clamp(22px, 6vw, 43px) 38px;
+    background-position: center 24%;
+    overflow: visible;
+  }
+  #brand_logo { max-width: 315px; margin-bottom: 31px; }
+  #profile_img { width: 105px; height: 105px; margin-bottom: 16px; }
+  #username span { font-size: 25px; }
+  #userbio { margin-bottom: 15px; }
+  #profile .socials { margin-top: 15px; }
+  #display { width:100%; margin:0; padding: 38px clamp(20px, 5vw, 42px); }
+  #display h1 { margin-bottom: 22px; font-size: 39px; }
+  .projects, #blogs { grid-template-columns:1fr; gap: 13px; }
+  .projects section { min-height: 148px; padding: 21px; }
+  #footer { padding-top: 50px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+}
+
+/* Local iconography and avatar fallback, works without third-party icon fonts. */
+#profile_img { position: relative; overflow: hidden; }
+.avatar-fallback {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  background: linear-gradient(140deg, #3268a3 0%, #1a2b57 90%);
+  color: #f2f7ff; font-size: 38px; font-weight: 800; letter-spacing: -.04em;
+}
+.avatar-photo { position: absolute; inset: 0; display: block; width:100%; height:100%; object-fit: cover; }
+.avatar-photo[hidden] { display: none; }
+.inline-icon { width: 17px; height: 17px; display:inline-block; flex-shrink:0; vertical-align: middle; }
+#about > span { display:flex; align-items:center; gap: 9px; }
+#about > span .inline-icon { color: #d6e7ff; }
+#profile .socials a { font-size: 17px; font-weight: 800; font-family: 'DM Sans', Arial, sans-serif; }
+.bottom_section .inline-icon { width: 15px; height: 15px; color:#8591a5; }
+.bottom_section span { display:inline-flex; align-items:center; gap: 6px; }
+.bottom_section span:first-child::before { content:''; width:9px; height:9px; display:inline-block; border-radius:50%; background:#1687e8; }
+.projects a[href*="CppProject"] .bottom_section span:first-child::before { background:#ee547e; }
+.projects a[href*="WebProgramming"] .bottom_section span:first-child::before { background:#ef8930; }
